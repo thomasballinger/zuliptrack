@@ -14,11 +14,11 @@ from optparse import OptionParser
 class Config(object):
     required_attrs = {'gh_username': 'GitHub username',
                       'gh_token': 'GitHub personal access token',
-                      'hb_email': 'Humbug email',
-                      'hb_api_key': 'Humbug api key'}
+                      'zulip_email': 'Zulip email',
+                      'zulip_api_key': 'Zulip api key'}
 
     def __init__(self):
-        self.path = os.path.expanduser('~/.hbtrack')
+        self.path = os.path.expanduser('~/.zuliptrack')
         self.data = self._read()
 
     def missing_attrs(self):
@@ -82,7 +82,7 @@ def authenticated_post(url, username, token, params=None):
                'ssl': True,
                'headers': {'Authorization': auth_string,
                            'Content-type': 'application/x-www-form-urlencoded',
-                           'User-Agent': 'hbtrack'}}
+                           'User-Agent': 'zuliptrack'}}
 
     return request('POST', url, options)
 
@@ -103,7 +103,7 @@ def verify_config(config):
     return config
 
 def cli():
-    desc = "Track your GitHub repositories on Humbug"
+    desc = "Track your GitHub repositories on Zulip"
     usage = "usage: %prog repo [repo ...]"
     parser = OptionParser(description=desc, usage=usage)
 
@@ -118,8 +118,8 @@ def cli():
                                 config['gh_username'],
                                 config['gh_token'],
                                 repo,
-                                email=config['hb_email'],
-                                api_key=config['hb_api_key'])
+                                email=config['zulip_email'],
+                                api_key=config['zulip_api_key'])
         resp_body = resp.read()
         repo_name =  "{0}/{1}".format(config['gh_username'], repo)
         if resp.status == 201:

@@ -4,9 +4,9 @@
 ```
 git clone https://github.com/thomasballinger/zuliptrack && cd zuliptrack
 chmod +x zuliptrack
-echo "alias zuliptrack=$(pwd)/zuliptrack" >> ~/.zshrc && source ~/.zshrc
+echo "alias zuliptrack=$(pwd)/zuliptrack" >> ~/.bashrc && source ~/.bashrc
 ```
-Replace `.zshrc` as necessary.
+Replace `.bashrc` as necessary.
 
 #### Usage
 
